@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.escom.practica3_1">
+
+    <!-- Permisos para cámara y micrófono -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    
+    <!-- Permisos para almacenamiento -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" 
+                     android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+                     android:maxSdkVersion="29" />
+                     
+    <!-- Permisos granulares para Android 13+ -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <!-- Add these permissions to your manifest file -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.camera2.full" />
+
+    <!-- Característica de cámara -->
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Practica3_1"
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="31">
+
+        
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Practica3_1"
+            android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Actividades para la cámara, visualización de imágenes y reproducción de audio -->
+        <activity
+            android:exported="false"
+            android:theme="@style/Theme.Practica3_1.AppCompat"
+            android:name=".CameraActivity" />
+            
+        <activity
+            android:exported="false"
+            android:theme="@style/Theme.Practica3_1.AppCompat"
+            android:name=".ImageViewerActivity" />
+            
+        <activity
+            android:exported="false"
+            android:theme="@style/Theme.Practica3_1.AppCompat"
+            android:name=".AudioRecorderActivity" />
+            
+        <activity
+            android:exported="false"
+            android:theme="@style/Theme.Practica3_1.AppCompat"
+            android:name=".GalleryActivity" />
+            
+        <!-- Proveedor de archivos para compartir imágenes y audio -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        
+        <!-- Add this inside the <application> tag if it's not already there -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        
+        <!-- Añadir esto dentro del elemento <application> -->
+        <activity
+            android:name=".ComposeFilterCameraActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Practica3_1" />
+    <!-- Añadir dentro de la etiqueta <application> -->
+    <activity
+        android:name=".ThemeSettingsActivity"
+        android:exported="false"
+        android:theme="@style/Theme.Practica3_1.AppCompat" />
+    </application>
+</manifest>
